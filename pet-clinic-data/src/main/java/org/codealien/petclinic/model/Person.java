@@ -1,6 +1,9 @@
 package org.codealien.petclinic.model;
 
-public class Person {
+public class Person extends BaseEntity {
+
+	private static final long serialVersionUID = -762958418473400945L;
+
 	private String name;
 	private String surname;
 

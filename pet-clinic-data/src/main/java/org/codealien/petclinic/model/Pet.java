@@ -2,7 +2,10 @@ package org.codealien.petclinic.model;
 
 import java.time.LocalDate;
 
-public class Pet {
+public class Pet extends BaseEntity{
+
+	private static final long serialVersionUID = 5661426403012584392L;
+	
 	private PetType petType;
 	private Owner owner;
 	private LocalDate birthDate;

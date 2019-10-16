@@ -3,9 +3,10 @@ package org.codealien.petclinic.service.map;
 import java.util.Set;
 
 import org.codealien.petclinic.model.Vet;
-import org.codealien.petclinic.service.CrudService;
 import org.codealien.petclinic.service.VetService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
 	@Override

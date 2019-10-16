@@ -3,9 +3,10 @@ package org.codealien.petclinic.service.map;
 import java.util.Set;
 
 import org.codealien.petclinic.model.Owner;
-import org.codealien.petclinic.service.CrudService;
 import org.codealien.petclinic.service.OwnerService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
 	public Owner save(Owner entity) {

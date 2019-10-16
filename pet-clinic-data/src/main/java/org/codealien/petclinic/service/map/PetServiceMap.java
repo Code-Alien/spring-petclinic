@@ -4,8 +4,9 @@ import java.util.Set;
 
 import org.codealien.petclinic.model.Pet;
 import org.codealien.petclinic.service.CrudService;
+import org.codealien.petclinic.service.PetService;
 
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
 	@Override
 	public Pet save(Pet entity) {

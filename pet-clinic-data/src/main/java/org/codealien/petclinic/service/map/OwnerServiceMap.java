@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
 	public Owner save(Owner entity) {
-		return super.save(entity.getId(), entity);
+		return super.save(entity);
 
 	}
 

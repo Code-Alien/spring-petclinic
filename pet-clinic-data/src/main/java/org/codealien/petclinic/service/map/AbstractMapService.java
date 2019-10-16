@@ -1,12 +1,15 @@
 package org.codealien.petclinic.service.map;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class AbstractMapService<T, ID> {
-	protected Map<ID, T> map = new HashMap<>();
+import org.codealien.petclinic.model.BaseEntity;
+
+public class AbstractMapService<T extends BaseEntity, ID extends Long> {
+	protected Map<Long, T> map = new HashMap<>();
 
 	Set<T> findAll() {
 		return new HashSet<>(map.values());
@@ -16,8 +19,14 @@ public class AbstractMapService<T, ID> {
 		return map.get(id);
 	}
 
-	T save(ID id, T entity) {
-		return map.put(id, entity);
+	T save(T entity) {
+		if (entity != null) {
+			entity.setId(getNextId());
+			map.put(entity.getId(), entity);
+		} else {
+			throw new RuntimeException("Object cannot be null");
+		}
+		return entity;
 	}
 
 	void delete(T entity) {
@@ -26,5 +35,13 @@ public class AbstractMapService<T, ID> {
 
 	void deleteById(ID id) {
 		map.remove(id);
+	}
+
+	private Long getNextId() {
+		if(map.isEmpty()) {
+			return 1L;
+		} else {
+			return Collections.max(map.keySet()) + 1;
+		} 
 	}
 }

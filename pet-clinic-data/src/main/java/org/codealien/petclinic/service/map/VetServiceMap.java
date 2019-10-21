@@ -2,15 +2,30 @@ package org.codealien.petclinic.service.map;
 
 import java.util.Set;
 
+import org.codealien.petclinic.model.Speciality;
 import org.codealien.petclinic.model.Vet;
+import org.codealien.petclinic.service.SpecialityService;
 import org.codealien.petclinic.service.VetService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
+	private final SpecialityService specialityService;
+
+	public VetServiceMap(SpecialityService specialityService) {
+		this.specialityService = specialityService;
+	}
 
 	@Override
 	public Vet save(Vet entity) {
+		if (!entity.getSpecialities().isEmpty()) {
+			entity.getSpecialities().forEach(speciality -> {
+				if (speciality.getId() == null) {
+					Speciality savedSpeciality = specialityService.save(speciality);
+					speciality.setId(savedSpeciality.getId());
+				}
+			});
+		}
 		return super.save(entity);
 	}
 

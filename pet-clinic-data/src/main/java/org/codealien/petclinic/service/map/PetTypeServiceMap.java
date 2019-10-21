@@ -4,7 +4,9 @@ import java.util.Set;
 
 import org.codealien.petclinic.model.PetType;
 import org.codealien.petclinic.service.PetTypeService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PetTypeServiceMap extends AbstractMapService<PetType, Long> implements PetTypeService{
 
 	@Override

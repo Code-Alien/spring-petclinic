@@ -1,6 +1,9 @@
 package org.codealien.petclinic.bootstrap;
 
+import java.time.LocalDate;
+
 import org.codealien.petclinic.model.Owner;
+import org.codealien.petclinic.model.Pet;
 import org.codealien.petclinic.model.PetType;
 import org.codealien.petclinic.model.Vet;
 import org.codealien.petclinic.service.OwnerService;
@@ -36,11 +39,31 @@ public class DataLoader implements CommandLineRunner {
 		Owner owner1 = new Owner();
 		owner1.setName("Danylo");
 		owner1.setSurname("Hreshchuk");
+		owner1.setAddress("Sadova");
+		owner1.setCity("Lviv");
+		owner1.setTelephone("9111");
+
+		Pet danylosDog = new Pet();
+		danylosDog.setBirthDate(LocalDate.of(2018, 10, 10));
+		danylosDog.setOwner(owner1);
+		danylosDog.setPetType(savedDogPetType);
+		danylosDog.setName("Dunai");
+		owner1.getPets().add(danylosDog);
 		ownerService.save(owner1);
 
 		Owner owner2 = new Owner();
 		owner2.setName("Vlodko");
 		owner2.setSurname("Polskii");
+		owner2.setAddress("Stryiska");
+		owner2.setCity("Lviv");
+		owner2.setTelephone("777");
+
+		Pet vlodkosCat = new Pet();
+		vlodkosCat.setBirthDate(LocalDate.of(2019, 01, 10));
+		vlodkosCat.setOwner(owner2);
+		vlodkosCat.setPetType(savedCatPetType);
+		vlodkosCat.setName("Barsik");
+		owner2.getPets().add(vlodkosCat);
 		ownerService.save(owner2);
 
 		System.out.println("Loaded owners....");

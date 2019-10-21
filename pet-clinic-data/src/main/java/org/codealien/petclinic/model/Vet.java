@@ -1,12 +1,13 @@
 package org.codealien.petclinic.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Vet extends Person {
 
 	private static final long serialVersionUID = -7448591538854588834L;
 
-	private Set<Speciality> specialities;
+	private Set<Speciality> specialities = new HashSet<>();
 
 	public Set<Speciality> getSpecialities() {
 		return specialities;

@@ -7,10 +7,12 @@ import org.codealien.petclinic.model.Pet;
 import org.codealien.petclinic.model.PetType;
 import org.codealien.petclinic.model.Speciality;
 import org.codealien.petclinic.model.Vet;
+import org.codealien.petclinic.model.Visit;
 import org.codealien.petclinic.service.OwnerService;
 import org.codealien.petclinic.service.PetTypeService;
 import org.codealien.petclinic.service.SpecialityService;
 import org.codealien.petclinic.service.VetService;
+import org.codealien.petclinic.service.VisitService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,13 +23,15 @@ public class DataLoader implements CommandLineRunner {
 	private final VetService vetService;
 	private final PetTypeService petTypeService;
 	private final SpecialityService specialityService;
+	private final VisitService visitService;
 
 	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
-			SpecialityService specialityService) {
+			SpecialityService specialityService, VisitService visitService) {
 		this.ownerService = ownerService;
 		this.vetService = vetService;
 		this.petTypeService = petTypeService;
 		this.specialityService = specialityService;
+		this.visitService = visitService;
 	}
 
 	@Override
@@ -105,6 +109,15 @@ public class DataLoader implements CommandLineRunner {
 		vetService.save(vet2);
 
 		System.out.println("Loaded Vets....");
+
+		Visit visit = new Visit();
+		visit.setDate(LocalDate.now());
+		visit.setDescription("sneezy kitty");
+		visit.setPet(vlodkosCat);
+		visitService.save(visit);
+		System.out.println("Loaded Visits....");
+
+
 	}
 
 }

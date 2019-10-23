@@ -2,17 +2,25 @@ package org.codealien.petclinic.model;
 
 import java.io.Serializable;
 
-public class BaseEntity implements Serializable {    
-	
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public class BaseEntity implements Serializable {
+
 	private static final long serialVersionUID = 8584931636899973715L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

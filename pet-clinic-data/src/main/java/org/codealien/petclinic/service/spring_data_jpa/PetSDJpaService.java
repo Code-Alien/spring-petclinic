@@ -30,7 +30,7 @@ public class PetSDJpaService implements PetService {
 
 	@Override
 	public Set<Pet> findAll() {
-		Set<Pet> pets = new HashSet<Pet>();
+		Set<Pet> pets = new HashSet<>();
 		petRepository.findAll().forEach(pets::add);
 		return pets;
 	}
@@ -43,7 +43,6 @@ public class PetSDJpaService implements PetService {
 	@Override
 	public void deleteById(Long id) {
 		petRepository.deleteById(id);
-		;
 	}
 
 }

@@ -2,13 +2,30 @@ package org.codealien.petclinic.model;
 
 import java.time.LocalDate;
 
-public class Pet extends BaseEntity{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "pets")
+public class Pet extends BaseEntity {
 
 	private static final long serialVersionUID = 5661426403012584392L;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "type_id")
 	private PetType petType;
+
+	@ManyToOne
+	@JoinColumn(name = "owner_id")
 	private Owner owner;
+
+	@Column(name = "birth_date")
 	private LocalDate birthDate;
+
+	@Column(name = "name")
 	private String name;
 
 	public PetType getPetType() {
@@ -42,5 +59,5 @@ public class Pet extends BaseEntity{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 }

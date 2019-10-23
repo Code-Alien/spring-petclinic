@@ -4,9 +4,11 @@ import java.util.Set;
 
 import org.codealien.petclinic.model.PetType;
 import org.codealien.petclinic.service.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile({"default", "map"})
 public class PetTypeServiceMap extends AbstractMapService<PetType, Long> implements PetTypeService{
 
 	@Override
